@@ -90,12 +90,16 @@ project_list = []
 headers = {
     "PRIVATE-TOKEN": gitlab_token
 }
-res = s.get(gitlab_url + '/projects', headers=headers)
-assert res.status_code == 200, 'Error when retrieving the projects. The returned html is %s'%res.text
-project_list += json.loads(res.text)
-print(res.text)
-if len(json.loads(res.text)) <= 0:
-    raise RuntimeError("Failed to parse reponse from gitlab")
+
+loaded = False
+page = 0
+while not loaded:
+    res = s.get(gitlab_url + f'/projects?page={page}', headers=headers)
+    assert res.status_code == 200, 'Error when retrieving the projects. The returned html is %s'%res.text
+    project_list += json.loads(res.text)
+    if len(json.loads(res.text)) == 0:
+        loaded = True
+    page += 1
 
 
 filtered_projects = list(filter(lambda x: x['path_with_namespace'].split('/')[0]==args.source_namespace, project_list))
