@@ -164,7 +164,6 @@ for i in range(len(filtered_projects)):
     if len(branches) == 0:
         print('\n\nThis repository is empty - skipping push')
     else:
-        print(dst_url)
         subprocess.run(['git','push','--mirror',dst_url])
     os.chdir('..')
     subprocess.check_call(['rm','-rf',src_url.split('/')[-1]])
