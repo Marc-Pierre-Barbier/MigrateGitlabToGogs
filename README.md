@@ -1,13 +1,13 @@
 # Migration utility for moving from Gitlab to Gogs / Gitea
 
-This tools provides an automated way to copy all repositories in a namespaces from Gitlab to Gogs / Gitea. 
-All tags and branches are copied. 
-Organizations in Gogs are supported as well. 
+This tools provides an automated way to copy all repositories in a namespaces from Gitlab to Gogs / Gitea.
+All tags and branches are copied.
+Organizations in Gogs are supported as well.
 
 ## Usage
 
-Type `python migrate_gitlab_to_gogs.py --help` for usage information. 
-It will print 
+Type `python migrate_gitlab_to_gogs.py --help` for usage information.
+It will print
 ```
 usage: migrate_gitlab_to_gogs.py [-h] --source_namespace SOURCE_NAMESPACE
                                  [--add_to_private]
@@ -45,7 +45,8 @@ optional arguments:
   --skip_existing       Skip repositories that already exist on remote without
                         asking the user
   --use_ssh             Use ssh to pull/push files to repos
+  --use_push_ssh        Use ssh only to push file to the repos
 ```
 
 ## Requirements
-This tools was written for Python 3 using the requests, json, subprocess, and argparse modules. 
+This tools was written for Python 3 using the requests, json, subprocess, and argparse modules.
